@@ -26,7 +26,7 @@ class EmployeeRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:users,email' . $this->route('id'), // 0019-Exclure l'ID actuel de la vérification unique
+            'email' => 'required|string|lowercase|email|max:255|unique:users,email,' . $this->route('id'), // 0019-Exclure l'ID actuel de la vérification unique
             'phone_number' => 'required|string|max:20', // 20-Validation pour le numéro de téléphone
             'hire_date' => 'required|date',
             'emploi_id' => 'required|exists:emplois,id', // 21-Vérifie que emploi_id existe dans la table emplois

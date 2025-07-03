@@ -62,11 +62,6 @@
                                                               {{ $emploi->emploi_title }}   
                                                           </option>
                                                       @endforeach
-                                                      {{-- @foreach ($emplois as $emploi)
-                                                      <option value="{{ $emploi->id }}" @selected(old('emploi_id') == $emploi->id)>
-                                                          {{ $emploi->emploi_title }}   
-                                                      </option>
-                                                     @endforeach --}}
                                                   </select>
           
                                                 <!-- Affichage de l'erreur pour job_id -->

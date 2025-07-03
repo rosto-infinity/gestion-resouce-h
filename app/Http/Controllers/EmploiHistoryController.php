@@ -40,18 +40,19 @@ class EmploiHistoryController extends Controller
     /**
      * -Affiche le formulaire de création.
      */
-    public function create(Request $request): View
+public function create(Request $request): View
 {
+    // -Récupère l'ID de l'utilisateur depuis la requête (si présent)
+    $selectedUserId = $request->input('user_id');
+
+
     $users = User::pluck('name', 'id');
     $emplois = Emploi::pluck('emploi_title', 'id');
-
-    // Récupère l'ID de l'utilisateur depuis la requête (si présent)
-    $selectedUserId = $request->old('user_id') ?? $request->input('user_id');
 
     // Filtre les emplois si un utilisateur est sélectionné
     if ($selectedUserId) {
         $emplois = Emploi::whereHas('users', fn($query) => $query->where('users.id', $selectedUserId))
-                        ->pluck('emploi_title', 'id');
+                         ->pluck('emploi_title', 'id');
     }
 
     return view('admin.emplois_histories.add', compact('users', 'emplois', 'selectedUserId'));

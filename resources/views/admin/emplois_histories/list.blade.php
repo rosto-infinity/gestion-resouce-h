@@ -42,6 +42,8 @@
                         <div class="card-body">
                         <div class="row">
                           {{-- Filtrer par utilisateur --}}
+                          
+                          
                           <div class="form-group col-md-3">
                             <label for="user_id">Utilisateur</label>
                             <select name="user_id" id="user_id"
@@ -127,7 +129,7 @@
                                 <td>{{ $emploiHistory->user ? $emploiHistory->user->name : '—' }}</td>
                                 <td>{{ $emploiHistory->emploi ? $emploiHistory->emploi->emploi_title : '—' }}</td>
                                 <td>{{ $emploiHistory->start_date}}</td>
-                                <td>{{ $emploiHistory->end_date }}</td>
+                                <td class="">{{ $emploiHistory->end_date  ? $emploiHistory->end_date : '-------'}}</td>
                                 <td>{{ $emploiHistory->created_at }}</td>
                                 <td>
                                     <a href="{{ route('admin.emplois_histories.show', $emploiHistory->id) }}" class="btn btn-info btn-sm">
