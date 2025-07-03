@@ -27,10 +27,13 @@ return new class extends Migration
                   ->onDelete('cascade');
 
             // 5-Dates de début et de fin (de type date ou datetime, pas integer)
-            $table->date('start_date')->nullable();
+            $table->date('start_date');
+            // La date de fin est nullable pour permettre des emplois en cours
             $table->date('end_date')->nullable();
 
             $table->timestamps();
+              // Empêche les doublons user_id + emploi_id
+          $table->unique(['user_id', 'emploi_id']);
         });
     }
 

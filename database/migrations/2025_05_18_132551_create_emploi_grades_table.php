@@ -17,6 +17,8 @@ return new class extends Migration
             $table->decimal('lowest_salary', 10, 2); // -Colonne pour le salaire le plus bas
             $table->decimal('highest_salary', 10, 2); // -Colonne pour le salaire le plus élevé
             $table->timestamps(); // -Colonne pour les timestamps created_at et updated_at
+
+          
         });
     }
 

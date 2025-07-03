@@ -86,9 +86,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Emploi::class);
     }
-    // Reletion avec le modèle EmploiHistory
-    public function emploi_histories()
+public function emplois()
 {
-    return $this->hasMany(EmploiHistory::class);
+    return $this->belongsToMany(Emploi::class, 'emploi_histories')
+               ->withPivot('start_date', 'end_date');
 }
 }

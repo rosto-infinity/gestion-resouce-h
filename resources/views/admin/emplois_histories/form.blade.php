@@ -52,14 +52,7 @@
                                         <label for="user_id">Utilisateur <span class="text-red-600">*</span></label>
                                         <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
                                             <option value="">-- Sélectionnez un utilisateur --</option>
-                                             
-                                            {{-- $users   = User::all(); --}}
-
-                                            {{-- @foreach($users as $user)
-                                                <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>
-                                                    {{ $user->email }}
-                                                </option>
-                                            @endforeach --}}
+    
                                             @foreach($users as $id => $name)
                                                 <option value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>
                                                     {{ $name }}
