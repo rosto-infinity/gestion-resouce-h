@@ -182,7 +182,7 @@
             </a>
         </li>
           <li class="nav-item">
-            <a href="{{ route('admin.dashboard')}}" class="nav-link">
+            <a href="{{ route('emploi_grade.index')}}" class="nav-link {{ Request::segment(2) === 'emploi_grade.index' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-star"></i>
                 <p>Notes d'emploi</p>
             </a>

@@ -27,14 +27,14 @@ class EmployeeRequest extends FormRequest
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:users,email,' . $this->route('id'), // 0019-Exclure l'ID actuel de la vérification unique
-            'phone_number' => 'required|string|max:20', // 20-Validation pour le numéro de téléphone
+            'phone_number' => 'required|string|max:20,|unique:users,phone_number,' . $this->route('id'), // 20-Validation pour le numéro de téléphone
             'hire_date' => 'required|date',
             'emploi_id' => 'required|exists:emplois,id', // 21-Vérifie que emploi_id existe dans la table emplois
             'salary' => 'required|numeric|min:0|max:500000', // 21-Assurez-vous que le salaire est positif
             'commission_pct' => 'required|numeric|min:0|max:100000', // 22-Pourcentage de commission entre 0 et 100
             // 'manager_id' => 'required',
             // 'departement_id' => 'required',
-            // 'job_id'         => 'required|exists:jobs,id', // 23-Vérifie que job_id existe dans la table jobs
+            //'job_id'         => 'required', // 23-Vérifie que job_id existe dans la table jobs
             // 'manager_id'     => 'required|exists:users,id', // 24-Vérifie que manager_id existe dans la table users
             // 'department_id'  => 'required|exists:departments,id', // 26-Vérifie que department_id existe dans la table departments
         ];

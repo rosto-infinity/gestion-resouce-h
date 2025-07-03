@@ -2,38 +2,83 @@
 
 namespace App\Exports;
 
-use App\Models\Emploi;
 use App\Models\EmploiHistory;
-use App\Models\User;
-use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Illuminate\Contracts\View\View;
 
-class EmploiHistoryExport implements FromView
+class EmploiHistoryExport implements FromView, WithStyles
 {
-    /**
-     * @return \Illuminate\Support\View
-     */
     public function view(): View
     {
-        // // --Chargement des utilisateurs et des emplois
-        // $users = User::all();      
-        // $emplois = Emploi::all();
-
-        // // --Chargement des historiques d'emploi avec les relations
-        // $emploisHistories = EmploiHistory::with(['user', 'emploi'])->get();
-
-
-         // 1-. 44Préparation des listes pour les selects
-         $users   = User::pluck('name', 'id');               // -charge uniquement id et name :contentReference[oaicite:4]{index=4}
-         $emplois = Emploi::pluck('emploi_title', 'id');
- 
-         // 2-. Application du scope filter et chargement des relations pour éviter le N+1
-         $emploisHistories = EmploiHistory::with(['user', 'emploi'])->get();
+        $emploisHistories = EmploiHistory::with(['user:id,name', 'emploi:id,emploi_title'])->get();
 
         return view('admin.emplois_histories.excel', [
-            'users' => $users,
-            'emplois' => $emplois,
-            'emploisHistories' => $emploisHistories,
+            'emploisHistories' => $emploisHistories
         ]);
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        // Style des en-têtes (ligne 1)
+        $sheet->getStyle('A1:E1')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'color' => ['rgb' => 'FFFFFF'],
+                'size' => 12,
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                'color' => ['rgb' => '4CAF50'], // Vert professionnel
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+            ],
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => ['rgb' => '000000'],
+                ],
+            ],
+        ]);
+
+        // Style des cellules de données
+        $sheet->getStyle('A2:E' . ($sheet->getHighestRow()))
+            ->applyFromArray([
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                ],
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['rgb' => 'DDDDDD'],
+                    ],
+                ],
+            ]);
+
+        // Ajustement automatique de la largeur des colonnes
+        foreach (range('A', 'E') as $column) {
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        // Couleur alternée des lignes pour améliorer la lisibilité
+        $sheet->getStyle('A2:E' . ($sheet->getHighestRow()))
+            ->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()
+            ->setARGB('FFFFFF'); // Couleur de fond par défaut (blanc)
+
+        // Lignes paires en gris clair
+        for ($i = 2; $i <= $sheet->getHighestRow(); $i++) {
+            if ($i % 2 == 0) {
+                $sheet->getStyle("A{$i}:E{$i}")
+                    ->getFill()
+                    ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+                    ->getStartColor()
+                    ->setARGB('F5F5F5');
+            }
+        }
     }
 }
