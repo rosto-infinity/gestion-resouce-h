@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\EmploiHistoryController;
-use App\Http\Controllers\EmploisController;
+use App\Models\EmploiHistory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EmployeesController;
-use App\Http\Controllers\JobsController;
-use App\Models\EmploiHistory;
+use App\Http\Controllers\EmploiHistoryController;
 
 // -Route principale qui redirige vers la méthode 'home' du ProductController
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -63,6 +64,8 @@ Route::get('admin/emplois_histories/{id}/edit', [EmploiHistoryController::class,
 Route::patch('admin/emplois_histories/{id}', [EmploiHistoryController::class, 'update'])->name('admin.emplois_histories.update'); // 27 - Mettre à jour un historique d'emploi
 Route::delete('admin/emplois_histories/{id}', [EmploiHistoryController::class, 'destroy'])->name('admin.emplois_histories.destroy'); // 28 - Supprimer un historique d'emploi
 
+
+ Route::resource('project', ProjectController::class);
 require __DIR__.'/auth.php'; // Inclusion des routes d'authentification
 
 // Routes commentées qui peuvent être utilisées ultérieurement

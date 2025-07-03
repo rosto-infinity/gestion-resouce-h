@@ -19,7 +19,7 @@
                         <i class="fas fa-file-excel"></i> Export Exel
                     </a>
                     <a href="{{ route('admin.emplois_histories.create') }}" class="btn btn-primary">
-                        Ajouter un historique
+                        Ajouter un historique+
                     </a>
                 </div>
             </div>
