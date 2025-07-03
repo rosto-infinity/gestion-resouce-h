@@ -188,7 +188,7 @@
             </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.dashboard')}}" class="nav-link">
+          <a href="{{ route('regions.index')}}" class="nav-link {{ Request::segment(2) === 'regions.index' ? 'active' : '' }}">
               <i class="nav-icon fas fa-asterisk "></i>
               <p>Régions</p>
           </a>

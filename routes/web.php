@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\EmploiHistoryController;
-
+use App\Http\Controllers\RegionController;
 
 // -Route principale qui redirige vers la méthode 'home' du ProductController
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -66,6 +66,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('admin/emplois_histories/{id}', [EmploiHistoryController::class, 'destroy'])->name('admin.emplois_histories.destroy'); // 28 - Supprimer un historique d'emploi
     
     Route::resource('admin/emploi_grade',EmploiGradeController::class); // 29 - Routes pour la gestion des grades d'emploi
+    Route::resource('admin/regions',RegionController::class); // 29 - Routes pour la gestion des grades d'emploi
     
 });
  
