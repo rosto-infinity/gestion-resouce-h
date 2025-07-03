@@ -158,69 +158,69 @@
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link {{ Request::segment(2) === 'dashboard' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p>
+                <p>Tableau de bord</p>
             </a>
         </li>
 
           <li class="nav-item">
             <a href="{{ route('admin.employees')}}" class="nav-link {{ Request::segment(2) === 'employees' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-users"></i>
-                <p>Employees</p>
+                <p>Employés</p>
             </a>
         </li>
           <li class="nav-item">
             <a href="{{ route('admin.emplois')}}" class="nav-link {{ Request::segment(2) === 'emplois' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-briefcase"></i>
-                <p>Jobs</p>
+                <p>Emplois</p>
             </a>
         </li>
         {{-- Jobs  History --}}
           <li class="nav-item">
             <a href="{{ route('admin.emplois_histories')}}" class="nav-link {{ Request::segment(2) === 'emplois_histories' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-history"></i>
-                <p>Jobs  History</p>
+                <p>Historiques des emplois</p>
             </a>
         </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-star"></i>
-                <p>Jobs  Grades</p>
+                <p>Notes d'emploi</p>
             </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('admin.dashboard')}}" class="nav-link">
               <i class="nav-icon fas fa-asterisk "></i>
-              <p>Regions</p>
+              <p>Régions</p>
           </a>
        </li>
        <li class="nav-item">
         <a href="{{ route('admin.dashboard')}}" class="nav-link">
             <i class="nav-icon fas fa-flag"></i>
-            <p>Countries</p>
+            <p>Pays</p>
         </a>
     </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
-                <p>Locations</p>
+                <p>Emplacements</p>
             </a>
         </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
-                <p>Departement</p>
+                <p>Département</p>
             </a>
         </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
-                <p>Manager</p>
+                <p>Directeur</p>
             </a>
         </li>
           <li class="nav-item">
             <a href="{{ route('admin.dashboard')}}" class="nav-link">
                 <i class="nav-icon fas fa-building"></i>
-                <p>Pay Roll</p>
+                <p>Liste de paie</p>
             </a>
         </li>
         
@@ -241,13 +241,13 @@
             <i class="nav-icon fas fa-asterisk "></i>
             <p>employees 2</p>
         </a>
-     </li
+      </li>
       <li class="nav-item">
         {{-- <a href="{{ route('admin.dashboard')}}" class="nav-link"> --}}
             <i class="nav-icon fas fa-asterisk "></i>
             <p>employees 3</p>
         </a>
-     </li
+      </li>
       @endif
             @if (Auth::user()->user_type === 1) {{-- Admin --}}
                 <li class="nav-item">

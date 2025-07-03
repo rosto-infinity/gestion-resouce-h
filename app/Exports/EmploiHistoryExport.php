@@ -28,7 +28,7 @@ class EmploiHistoryExport implements FromView
          $emplois = Emploi::pluck('emploi_title', 'id');
  
          // 2-. Application du scope filter et chargement des relations pour éviter le N+1
-         $emploisHistories = EmploiHistory::with(['user', 'emploi']);
+         $emploisHistories = EmploiHistory::with(['user', 'emploi'])->get();
 
         return view('admin.emplois_histories.excel', [
             'users' => $users,
