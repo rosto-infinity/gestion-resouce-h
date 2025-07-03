@@ -49,7 +49,7 @@ public function create(Request $request): View
     $users = User::pluck('name', 'id');
     $emplois = Emploi::pluck('emploi_title', 'id');
 
-    // Filtre les emplois si un utilisateur est sélectionné
+    // -Filtre les emplois si un utilisateur est sélectionné
     if ($selectedUserId) {
         $emplois = Emploi::whereHas('users', fn($query) => $query->where('users.id', $selectedUserId))
                          ->pluck('emploi_title', 'id');
