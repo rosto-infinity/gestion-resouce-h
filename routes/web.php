@@ -1,17 +1,18 @@
 <?php
 
-use App\Http\Controllers\EmploiGradeController;
 use App\Models\EmploiHistory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\EmploisController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfileController;
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\EmploiGradeController;
 use App\Http\Controllers\EmploiHistoryController;
-use App\Http\Controllers\RegionController;
 
 // -Route principale qui redirige vers la méthode 'home' du ProductController
 Route::get('/', [ProductController::class, 'home'])->name('home');
@@ -67,6 +68,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     
     Route::resource('admin/emploi_grade',EmploiGradeController::class); // 29 - Routes pour la gestion des grades d'emploi
     Route::resource('admin/regions',RegionController::class); // 29 - Routes pour la gestion des grades d'emploi
+    Route::resource('admin/countries',CountryController::class); // 29 - Routes pour la gestion des grades d'emploi
     
 });
  

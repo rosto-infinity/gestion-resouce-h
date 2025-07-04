@@ -2,5 +2,5 @@
 @section('title', 'Ajouter une nouvelle Emplois')
 @section('content')
 @section('header_title', 'Ajouter une nouvelle Emplois')
-    @include('admin.regions.form-regions')
+    @include('admin.countries.form-countries')
 @endsection

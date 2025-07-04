@@ -194,7 +194,7 @@
           </a>
        </li>
        <li class="nav-item">
-        <a href="{{ route('admin.dashboard')}}" class="nav-link">
+        <a href="{{ route('countries.index')}}" class="nav-link  {{ Request::segment(2) === 'countries.index' ? 'active' : '' }}">
             <i class="nav-icon fas fa-flag"></i>
             <p>Pays</p>
         </a>

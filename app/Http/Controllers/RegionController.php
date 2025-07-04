@@ -17,7 +17,7 @@ class RegionController extends Controller
     // Afficher le formulaire de création
     public function create()
     {
-        return view('regions.create');
+        return view('admin.regions.add-regions');
     }
 
     // Enregistrer une nouvelle région
@@ -35,14 +35,14 @@ class RegionController extends Controller
     public function show(string $id)
     {
         $region = Region::findOrFail($id);
-        return view('regions.show', compact('region'));
+        return view('admin.regions.view-regions', compact('region'));
     }
 
     // Afficher le formulaire de modification
     public function edit(string $id)
     {
         $region = Region::findOrFail($id);
-        return view('regions.edit', compact('region'));
+        return view('admin.regions.edit-regions', compact('region'));
     }
 
     // Mettre à jour une région
